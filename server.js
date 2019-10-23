@@ -13,9 +13,25 @@ const complements = [
   "You've learned a lot of things, and that's pretty hard to do"
 ];
 
+const insult = [
+  "You smell like fish", 
+  "You are ugly",
+  "Your Mom is a bitch",
+  "What the fuck is with your face!",
+  "Pancake Titties!!!!", 
+  "You are professor nerballs, that is you",
+  "What a Mama Luke!"
+];
+
+
 function getRandomComplement() {
   const randomIndex = Math.floor(Math.random() * complements.length);
   return complements[randomIndex];
+};
+
+function getRandomInsult() {
+  const randomInsultIndex = Math.floor(Math.random() * insult.length);
+  return insult[randomInsultIndex];
 }
 
 const app = express();
@@ -31,6 +47,14 @@ app.get("/complement", function (req, res) {
     })
     .end();
 });
+
+app.get("/insult", function (req, res) {
+  res
+    .json({
+      insult: getRandomInsult()
+    })
+    .end();
+})
 
 app.use("/public", express.static("./public"));
 
